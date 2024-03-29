@@ -4,7 +4,7 @@ const TableView = ({ data }) => {
     <div className=" p-4 pb-12">
       <table className="table-auto max-w-7xl mx-auto bg-white shadow-md">
         <thead>
-          <tr className="bg-blue-500 text-white">
+          <tr className="bg-blue-500 text-white ">
             <th className="px-4 py-3 text-lg font-semibold border-b border-blue-600">
               SL.No
             </th>
@@ -41,7 +41,7 @@ const TableView = ({ data }) => {
                 {index + 1}
               </td>
               <td className="px-4 py-3 text-lg border-b border-gray-300">
-                {item.Name}
+                {item.Name.substring(0, item.Name.length - 1)}
               </td>
               <td className="px-4 py-3 text-lg border-b border-gray-300">
                 {item.Config.PrivateZone ? (

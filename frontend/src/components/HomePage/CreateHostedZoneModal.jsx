@@ -73,7 +73,7 @@ const CreateHostedZoneModal = ({
             />
             <label
               htmlFor="PrivateZone"
-              className="block mb-2 text-gray-800 font-semibold"
+              className="block mb-2 text-gray-800 font-semibold "
             >
               Private Zone
             </label>

@@ -2,14 +2,15 @@ const express = require("express");
 const AWS = require("aws-sdk");
 const uuid = require("uuid");
 const cors = require("cors");
+require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 AWS.config.update({
-  accessKeyId: "AKIATRMUKKFSFD5RQH7W",
-  secretAccessKey: "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",
-  region: "us-north-1",
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION,
 });
 const route53 = new AWS.Route53();
 app.get("/list-hosted-zones", async (req, res) => {
@@ -56,7 +57,7 @@ app.post("/create-hosted-zone", async (req, res) => {
       VPC: {
         VPCRegion: "eu-north-1", // Specify the region of your VPC
         VPCId: "vpc-08173062dad5581b2", // Specify the ID of your VPC
-      }
+      },
     };
 
     const data = await route53.createHostedZone(params).promise();
