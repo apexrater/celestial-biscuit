@@ -1,9 +1,2 @@
-# Node.js dependencies
-node_modules/
-
-# Build artifacts
-dist/
-*.log
-
 # Environment variables
 api/.env
