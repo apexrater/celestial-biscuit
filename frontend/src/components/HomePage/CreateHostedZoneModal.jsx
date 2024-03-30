@@ -30,7 +30,7 @@ const CreateHostedZoneModal = ({
               className="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="CallerReference"
               className="block mb-2 text-gray-800 font-semibold"
@@ -45,13 +45,13 @@ const CreateHostedZoneModal = ({
               onChange={handleChange}
               className="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
             />
-          </div>
+          </div> */}
           <div className="mb-4">
             <label
               htmlFor="Comment"
               className="block mb-2 text-gray-800 font-semibold"
             >
-              Comment
+              Description
             </label>
             <input
               type="text"
@@ -63,6 +63,12 @@ const CreateHostedZoneModal = ({
             />
           </div>
           <div className="mb-4 flex items-center gap-2">
+            <label
+              htmlFor="PrivateZone"
+              className="block mb-2 text-gray-800 font-semibold "
+            >
+              Private Zone
+            </label>
             <input
               type="checkbox"
               id="PrivateZone"
@@ -71,12 +77,6 @@ const CreateHostedZoneModal = ({
               onChange={handleChange}
               className="border rounded px-3 py-2 w-5 h-5"
             />
-            <label
-              htmlFor="PrivateZone"
-              className="block mb-2 text-gray-800 font-semibold "
-            >
-              Private Zone
-            </label>
           </div>
           {/* Add more form fields as needed */}
           <button

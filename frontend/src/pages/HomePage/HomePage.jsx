@@ -63,14 +63,20 @@ const HomePage = () => {
   //============================================
   return (
     <div>
-      <div className="flex justify-end">
-        <button
-          onClick={openModal}
-          className="m-3 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md"
-        >
-          Create Hosted Zone
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          openModal();
+          setFormData({
+            Name: "",
+            CallerReference: "",
+            Comment: "",
+            PrivateZone: false,
+          });
+        }}
+        className="flex mx-auto my-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md "
+      >
+        Create Hosted Zone
+      </button>
 
       {isModalOpen && (
         <CreateHostedZoneModal
