@@ -14,7 +14,10 @@ const jwtSecret = "fasefraw4r5r3wq45wdfgw34twdfg";
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: 'https://apexrater-e8yg4ec5q-kushagra-rawats-projects-5f5026c5.vercel.app',
+  credentials: true // Make sure to enable credentials if required
+}));
 AWS.config.update({
   accessKeyId: process.env.ACCESS_KEY_ID,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
