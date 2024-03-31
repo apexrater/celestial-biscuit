@@ -148,25 +148,7 @@ app.post("/create-records", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-app.delete("/delete-hosted-zone", async (req, res) => {
-  try {
-    const { zoneId } = req.body;
-    const zoneIdString = String(zoneId);
-    // Define parameters for the delete hosted zone request
-    const params = {
-      Id: zoneIdString,
-    };
 
-    // Call the deleteHostedZone method to delete the hosted zone
-    await route53.deleteHostedZone(params).promise();
-
-    // Send a JSON response indicating success
-    res.json({ message: `Hosted zone with ID ${zoneId} deleted successfully` });
-  } catch (error) {
-    console.error("Error deleting hosted zone:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });

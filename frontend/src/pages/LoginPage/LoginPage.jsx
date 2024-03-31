@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const { setUser } = useContext(UserContext);
-  
+
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
@@ -49,8 +49,7 @@ export default function LoginPage() {
           />
           <button className="login-button">Login</button>
           <div className="register-link">
-            Don't have an account yet?{" "}
-            <Link to={"/register"}>Register now</Link>
+            Don't have an account yet? <Link to={"/"}>Register now</Link>
           </div>
         </form>
       </div>

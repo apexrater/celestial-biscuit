@@ -1,60 +1,59 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../components/LoginPage/UserContext";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 
-export default function UsernamePage() {
-  const { user, setUser } = useContext(UserContext);
-  const [username, setUsername] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(true);
+const Profile = () => {
+  const { ready, user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    async function checkLoggedIn() {
-      try {
-        const response = await axios.get("http://localhost:5173/profile");
-        setUser(response.data); // Assuming the response contains user data
-      } catch (error) {
-        setUser(null);
-      }
-      setLoading(false);
+  const logout = async () => {
+    try {
+      await axios.post("http://localhost:3000/logout");
+      setUser(null);
+      return <Navigate to="/login" />;
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
-
-    checkLoggedIn();
-  }, [setUser]);
-
-  // Render loading state while checking authentication status
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  // Redirect to login page if user is not logged in
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
-  console.log(user);
-  // Handle username submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you can handle the username submission, for example, sending it to the backend
-    setSubmitted(true);
-    console.log("Submitted username:", username);
   };
+  if (!ready) {
+    return "Loading...";
+  }
 
-  // Render the username input form
   return (
     <div>
-      <h1>Welcome, {user.name}!</h1>
-      <p>Please enter your username:</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {submitted && <p>Username submitted successfully!</p>}
+      {user && user.name && user.email ? (
+        <>
+          <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="max-w-md w-full bg-white rounded-lg overflow-hidden shadow-md">
+              <div className="py-4 px-6">
+                <h2 className="text-xl font-semibold mb-4">Profile Details</h2>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Name:
+                  </label>
+                  <p className="text-lg font-semibold">{user && user.name}</p>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Email:
+                  </label>
+                  <p className="text-lg font-semibold">{user && user.email}</p>
+                </div>
+                <button
+                  onClick={logout}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <Navigate to="/login" />
+      )}
     </div>
   );
-}
+};
+
+export default Profile;
