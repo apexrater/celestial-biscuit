@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd frontend && yarn install && ./node_modules/vite/bin/vite.js build",
+  "outputDirectory": "frontend/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/backend/api/(.*)",
+      "destination": "/backend/api/index.js"
+    },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
