@@ -26,7 +26,7 @@ AWS.config.update({
   region: process.env.REGION,
 });
 const route53 = new AWS.Route53();
-app.post("/api/register", async (req, res) => {
+app.post("/backend/backend/api/register", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { name, email, password } = req.body;
 
@@ -41,7 +41,7 @@ app.post("/api/register", async (req, res) => {
     res.status(422).json(e);
   }
 });
-app.post("/api/login", async (req, res) => {
+app.post("/backend/api/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { email, password } = req.body;
   const userDoc = await User.findOne({ email });
@@ -67,10 +67,10 @@ app.post("/api/login", async (req, res) => {
     res.json("not found");
   }
 });
-app.post("/api/logout", (req, res) => {
+app.post("/backend/api/logout", (req, res) => {
   res.cookie("token", "").json(true);
 });
-app.get("/api/profile", (req, res) => {
+app.get("/backend/api/profile", (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { token } = req.cookies;
   if (token) {
@@ -83,7 +83,7 @@ app.get("/api/profile", (req, res) => {
     res.json(null);
   }
 });
-app.get("/api/list-hosted-zones", async (req, res) => {
+app.get("/backend/api/list-hosted-zones", async (req, res) => {
   try {
     const data = await route53.listHostedZones().promise();
     res.json(data.HostedZones);
@@ -92,7 +92,7 @@ app.get("/api/list-hosted-zones", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-app.post("/api/create-hosted-zone", async (req, res) => {
+app.post("/backend/api/create-hosted-zone", async (req, res) => {
   try {
     const formData = req.body;
     console.log(formData);
@@ -117,7 +117,7 @@ app.post("/api/create-hosted-zone", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-app.post("/api/create-records", async (req, res) => {
+app.post("/backend/api/create-records", async (req, res) => {
   try {
     const { data, hostedId } = req.body;
 
