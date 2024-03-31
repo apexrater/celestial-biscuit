@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TableView from "../../components/HomePage/TableView";
-import CreateHostedZoneModal from "../../components/HomePage/CreateHostedZoneModal";
+import TableView from "../../components/Dashboard/TableView";
+import CreateHostedZoneModal from "../../components/Dashboard/CreateHostedZoneModal";
 
-const HomePage = () => {
+const Dashboard = () => {
   const [hostedZones, setHostedZones] = useState([]);
   useEffect(() => {
     const fetchHostedZones = async () => {
@@ -91,4 +91,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Dashboard;
