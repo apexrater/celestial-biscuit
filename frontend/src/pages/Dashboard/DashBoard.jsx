@@ -8,9 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchHostedZones = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/list-hosted-zones"
-        );
+        const response = await axios.get("/list-hosted-zones");
         setHostedZones(response.data);
         console.log(hostedZones);
       } catch (error) {
@@ -48,10 +46,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/create-hosted-zone",
-        formData
-      );
+      const response = await axios.post("/create-hosted-zone", formData);
       console.log("Response from backend:", response.data);
 
       closeModal(); // Close modal after successful submission

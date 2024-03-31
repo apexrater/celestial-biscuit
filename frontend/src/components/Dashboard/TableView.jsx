@@ -16,10 +16,7 @@ const TableView = ({ data }) => {
 
   const handleCreate = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/create-records",
-        { data, hostedId }
-      );
+      const response = await axios.post("/create-records", { data, hostedId });
       closeModal();
     } catch (error) {
       console.error("Error sending data to backend:", error);
@@ -105,7 +102,6 @@ const TableView = ({ data }) => {
                   >
                     Create Records
                   </button>
-                  
                 </div>
               </td>
             </tr>

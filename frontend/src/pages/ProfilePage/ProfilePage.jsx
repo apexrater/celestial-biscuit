@@ -8,7 +8,7 @@ const Profile = () => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:3000/logout");
+      await axios.post("/logout");
       setUser(null);
       return <Navigate to="/login" />;
     } catch (error) {
