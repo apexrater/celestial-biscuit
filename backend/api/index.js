@@ -14,7 +14,12 @@ const jwtSecret = "fasefraw4r5r3wq45wdfgw34twdfg";
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 AWS.config.update({
   accessKeyId: process.env.ACCESS_KEY_ID,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
